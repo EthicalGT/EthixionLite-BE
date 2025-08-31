@@ -1,0 +1,8 @@
+[default]
+address = "127.0.0.1"
+port = 2400
+
+[default.limits]
+data = "1 MiB"
+file = "2 MiB"
+form = "512 KiB"

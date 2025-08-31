@@ -1,0 +1,188 @@
+@font-face {
+  font-family: 'Myfam';
+  src: url('/fonts/Poppins-Regular.woff') format('woff');
+}
+
+    * {
+      font-family: Myfam;
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #f4f4f4;
+      font-size: 1rem;
+      color: #1a1a1a;
+      line-height: 1.4;
+    }
+    .container {
+      background-color: transparent;
+      color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      max-width: 750px;
+      margin: 0 auto;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+      width: 90%;
+    }
+    h1 {
+      color: #0a192f;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .subtext {
+      color: #444;
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+    .shield-container {
+      position: relative;
+      width: 8rem;
+      height: 8rem;
+      margin: 0 auto 1.5rem;
+    }
+    .shield-svg {
+      width: 100%;
+      height: 100%;
+      animation: pulse-shield 2s infinite;
+    }
+    @keyframes pulse-shield {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+    .scan-ring {
+      position: absolute;
+      top: -0.75rem;
+      left: -0.75rem;
+      width: 9.5rem;
+      height: 9.5rem;
+      border-radius: 50%;
+      border: 2px solid #0a192f;
+      animation: spin 4s linear infinite;
+      box-sizing: content-box;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    .progress-bar {
+      width: 100%;
+      height: 0.625rem;
+      background: #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, #0a192f, #64b5f6);
+      animation: fillBar 10s linear forwards;
+      box-shadow: 0 0 8px #2196f3aa;
+    }
+    @keyframes fillBar {
+      to { width: 100%; }
+    }
+    .log-box {
+      background-color: #fff;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+      max-height: 150px;
+      overflow-y: auto;
+      font-family: monospace, monospace;
+      color: #112240;
+      width: 100%;
+      max-width: 750px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+    .log-line {
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+      padding: 0.125rem 0;
+      white-space: nowrap;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .verified-message {
+      display: none;
+      margin-top: 1.25rem;
+      font-size: 1.3rem;
+      color: #2e7d32;
+      animation: bounce 1s ease infinite alternate;
+    }
+    @keyframes bounce {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+    .footer-badge {
+      width: 100%;
+      max-width: 250px;
+      color: #fff;
+      margin: 1rem auto 0;
+      background-color: #0a192f;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      opacity: 0.95;
+      transition: transform 0.3s;
+      cursor: default;
+    }
+    .footer-badge:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.75rem;
+      }
+      .subtext {
+        font-size: 1rem;
+      }
+      .shield-container {
+        width: 6rem;
+        height: 6rem;
+        margin-bottom: 1rem;
+      }
+      .scan-ring {
+        width: 7rem;
+        height: 7rem;
+        top: -0.5rem;
+        left: -0.5rem;
+      }
+      .progress-bar {
+        height: 0.5rem;
+        margin: 1rem 0;
+      }
+      .log-box {
+        height: 120px;
+        font-size: 0.8rem;
+      }
+      .verified-message {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+      }
+      .footer-badge {
+        max-width: 200px;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
