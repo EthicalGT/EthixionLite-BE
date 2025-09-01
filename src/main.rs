@@ -2776,7 +2776,7 @@ pub async fn getData(payload: Form<GetData>) -> Json<serde_json::Value> {
 #[launch]
 async fn rocket() -> _ {
     let figment = Figment::from(Config::default())
-        .merge(("port", 2400))
+        .merge(("address", "0.0.0.0"))
         .merge(("limits.data", 1 * 1024 * 1024))
         .merge(("limits.file", 2 * 1024 * 1024))
         .merge(("limits.form", 512 * 1024));
