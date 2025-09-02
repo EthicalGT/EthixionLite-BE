@@ -2795,7 +2795,7 @@ async fn rocket() -> _ {
     rocket::custom(figment)
         .manage(pool.clone())
         //.mount("/static",FileServer::from("/home/ethicalgt/Pictures/ethixion_backend/static"),)
-        .mount("/static", FileServer::from("static"))
+        .mount("/static", FileServer::from("../static"))
         .mount(
             "/",
             routes![
