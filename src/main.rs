@@ -2775,15 +2775,20 @@ pub async fn getData(payload: Form<GetData>) -> Json<serde_json::Value> {
 
 #[launch]
 async fn rocket() -> _ {
+    let port: u16 = std::env::var("PORT")
+        .unwrap_or_else(|_| "8000".to_string()) // fallback for local dev
+        .parse()
+        .expect("PORT must be a number");
+
     let figment = Figment::from(Config::default())
         .merge(("address", "0.0.0.0"))
+        .merge(("port", port)) 
         .merge(("limits.data", 1 * 1024 * 1024))
         .merge(("limits.file", 2 * 1024 * 1024))
         .merge(("limits.form", 512 * 1024));
-    let pool = db::init_global_pool().await;
 
+    let pool = init_global_pool().await;
     let cors = CorsOptions {
-        //allowed_origins: AllowedOrigins::all(),
         allowed_origins: AllowedOrigins::some_exact(&["https://ethixionlite.vercel.app"]),
         allowed_headers: AllowedHeaders::all(),
         allow_credentials: true,
@@ -2794,7 +2799,6 @@ async fn rocket() -> _ {
 
     rocket::custom(figment)
         .manage(pool.clone())
-        //.mount("/static",FileServer::from("/home/ethicalgt/Pictures/ethixion_backend/static"),)
         .mount(
             "/",
             routes![
