@@ -2787,7 +2787,7 @@ async fn rocket() -> _ {
         .merge(("limits.file", 2 * 1024 * 1024))
         .merge(("limits.form", 512 * 1024));
 
-    let pool = init_global_pool().await;
+    let pool = db::init_global_pool().await;
     let cors = CorsOptions {
         allowed_origins: AllowedOrigins::some_exact(&["https://ethixionlite.vercel.app"]),
         allowed_headers: AllowedHeaders::all(),
