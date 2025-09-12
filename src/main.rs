@@ -2790,6 +2790,11 @@ async fn rocket() -> _ {
     let pool = db::init_global_pool().await;
     let cors = CorsOptions {
         allowed_origins: AllowedOrigins::some_exact(&["https://ethixionlite.vercel.app"]),
+        allowed_methods: ["GET", "POST", "OPTIONS"]
+            .iter()
+            .cloned()
+            .map(From::from)
+            .collect(),
         allowed_headers: AllowedHeaders::all(),
         allow_credentials: true,
         ..Default::default()
