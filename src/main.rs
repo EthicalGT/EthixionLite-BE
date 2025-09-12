@@ -2788,7 +2788,8 @@ async fn rocket() -> _ {
         .merge(("limits.form", 512 * 1024));
 
     let pool = db::init_global_pool().await;
-    let cors = CorsOptions {
+    
+    /*let cors = CorsOptions {
         allowed_origins: AllowedOrigins::some_exact(&["https://ethixionlite.vercel.app"]),
         allowed_methods: ["GET", "POST", "OPTIONS"]
             .iter()
@@ -2800,8 +2801,22 @@ async fn rocket() -> _ {
         ..Default::default()
     }
     .to_cors()
-    .expect("CORS configuration failed");
+    .expect("CORS configuration failed"); */
 
+    let cors = CorsOptions {
+    allowed_origins: AllowedOrigins::some_exact(&[
+        "https://ethixionlite.vercel.app",
+    ]),
+    allowed_methods: vec![Method::Get, Method::Post, Method::Put, Method::Delete, Method::Options]
+        .into_iter()
+        .map(From::from)
+        .collect(),
+    allowed_headers: AllowedHeaders::all(),
+    allow_credentials: true,
+    ..Default::default()
+}
+.to_cors()
+.expect("CORS configuration failed");
     rocket::custom(figment)
         .manage(pool.clone())
         .mount(
