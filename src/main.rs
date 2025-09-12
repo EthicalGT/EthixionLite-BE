@@ -31,6 +31,7 @@ use regex::Regex;
 use rocket::form::Form;
 use rocket::fs::FileServer;
 use rocket::http::{Cookie, CookieJar, SameSite, Status};
+use rocket::http::Method;
 use rocket::request::{FromRequest, Outcome};
 use rocket::response::{Responder, Response};
 use rocket::time::Duration;
