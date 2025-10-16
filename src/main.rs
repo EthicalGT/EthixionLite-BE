@@ -31,7 +31,7 @@ use regex::Regex;
 use rocket::form::Form;
 use rocket::fs::FileServer;
 use rocket::http::{Cookie, CookieJar, SameSite, Status};
-use rocket::http::Method;
+use rocket::http::Method::*;
 use rocket::request::{FromRequest, Outcome};
 use rocket::response::{Responder, Response};
 use rocket::time::Duration;
@@ -2808,7 +2808,7 @@ async fn rocket() -> _ {
     allowed_origins: AllowedOrigins::some_exact(&[
         "https://ethixionlite.vercel.app",
     ]),
-    allowed_methods: vec![Method::Get, Method::Post, Method::Put, Method::Delete, Method::Options]
+    allowed_methods: vec![Get,Post,Put,Delete,Options]
         .into_iter()
         .map(From::from)
         .collect(),
