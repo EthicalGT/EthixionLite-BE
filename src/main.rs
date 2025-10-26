@@ -299,7 +299,7 @@ If you did not request this account, you can safely ignore this email.
 Best regards,
 Ethixion Security Team
 Secure. Reliable. Alert.
-",format!("http://127.0.0.1:3000/verify_user?token={}",token) 
+",format!("https://ethixionlite-be-production.up.railway.app/verify_user?token={}",token) 
 );
     match insert_user(&payload.fullname, &payload.email, &pwd, &ustatus).await {
         Ok(_) => {
@@ -325,7 +325,7 @@ async fn verify_account(token: String) -> Json<serde_json::Value> {
         You can now access all our advanced security and alert services...\n\n\
         👉 Login to Your Account: {}\n\n\
         Best regards,\nEthixion Security Team",
-        "http://127.0.0.1:3000/action"
+        "https://ethixionlite.vercel.app/action"
     );
 
     let data = match get_verification_data(&token).await {
